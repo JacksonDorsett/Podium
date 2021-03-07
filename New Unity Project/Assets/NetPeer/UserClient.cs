@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
+using System.Threading;
 using UnityEngine;
 
 public class UserClient : MonoBehaviour
@@ -9,6 +10,8 @@ public class UserClient : MonoBehaviour
     public UserClient(Socket clientSocket)
     {
         this.clientSocket = clientSocket;
+
+        Thread t = new Thread(new ThreadStart(() => Listen(clientSocket)));
     }
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,7 @@ public class UserClient : MonoBehaviour
             byte[] buf = new byte[client.ReceiveBufferSize];
 
             client.Receive(buf);
+
 
 
         }

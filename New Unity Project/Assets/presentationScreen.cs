@@ -13,6 +13,7 @@ public class presentationScreen : MonoBehaviour {
     Texture texture;
     Color color;
 
+    public int Index { get { return x; } }
 
     void Start() {
         x = 0;

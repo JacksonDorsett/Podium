@@ -13,7 +13,7 @@ namespace Assets.NetPeer
 {
     class ServerManager : MonoBehaviour
     {
-        CommandHandler cmdHandler;
+        ServerCommandHandler cmdHandler;
         public static int port = 8083;
         private IPEndPoint ipEndPoint;
         public string str;
@@ -26,6 +26,7 @@ namespace Assets.NetPeer
         {
             connectedClients = new List<Socket>();
             clientSocket = default(Socket);
+            cmdHandler = new ServerCommandHandler(connectedClients);
             Bind();
             Debug.Log("Done Binding");
             Thread clientThread = new Thread(new ThreadStart(() =>

@@ -20,6 +20,11 @@ namespace Assets.NetPeer
             registeredUsers.Add(myID);
         }
 
+        public void Add(int id)
+        {
+            registeredUsers.Add(id);
+        }
+
         
     }
 }
