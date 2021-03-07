@@ -6,10 +6,18 @@ public class MouseHandler : MonoBehaviour
     public float horizontalSpeed = 1f;
     // vertical rotation speed
     public float verticalSpeed = 1f;
-    private float xRotation = 0.0f;
+    public float xRotation = 0.0f;
     private float yRotation = 0.0f;
     private Camera cam;
 
+    public Vector3 HorizontalDirection
+    {
+        get
+        {
+            Vector3 direction = new Vector3(Mathf.Sin(yRotation), 0, Mathf.Cos(yRotation)).normalized;
+            return direction;
+        }
+    }
     void Start()
     {
         cam = Camera.main;
@@ -22,7 +30,7 @@ public class MouseHandler : MonoBehaviour
 
         yRotation += mouseX;
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90, 90);
+        //xRotation = Mathf.Clamp(xRotation, 0, 90);
 
         cam.transform.eulerAngles = new Vector3(xRotation, yRotation, 0.0f);
     }
