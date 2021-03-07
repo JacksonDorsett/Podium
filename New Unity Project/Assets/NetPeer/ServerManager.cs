@@ -8,6 +8,7 @@ using UnityEngine;
 using System.Net.Sockets;
 using System.Threading;
 using Assets.NetPeer.ServerCommand;
+using Newtonsoft.Json.Linq;
 
 namespace Assets.NetPeer
 {
@@ -73,21 +74,24 @@ namespace Assets.NetPeer
             while (client.Connected)
             {
                 byte[] msg = new byte[1024];
+                Debug.Log("Waiting to hear from user");
                 int size = client.Receive(msg);
-                Console.WriteLine("Client>> " +
-                System.Text.Encoding.ASCII.GetString(msg, 0, size));
+                Parse(Encoding.UTF8.GetString(msg, 0, size));
 
-                // rebroadcast
-                foreach (Socket clientSocket in connectedClients)
-                {
-                    //if (clientSocket == client) continue;
-                    clientSocket.Send(msg, 0, size, SocketFlags.None);
-                }
+                
             }
 
             Debug.Log("Lost Connection");
             connectedClientCount--;
         }
+
+        private void Parse(string s)
+        {
+            JObject o = JObject.Parse(s);
+
+            new SendLocationCommand(o["ID"].ToObject<int>(), new Vector3(o["x"].ToObject<float>(), o["y"].ToObject<float>(), o["z"].ToObject<float>()));
+        }
+
         private void Bind()
         {
             str = GetIPString();
