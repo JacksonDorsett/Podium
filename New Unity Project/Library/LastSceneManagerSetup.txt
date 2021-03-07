@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Menu.unity
+- path: Assets/first person movement.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
