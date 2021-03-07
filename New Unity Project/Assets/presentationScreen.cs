@@ -13,6 +13,9 @@ public class presentationScreen : MonoBehaviour {
     Texture texture;
     Color color;
 
+    private static presentationScreen _instance;
+
+    public static presentationScreen Instance { get { return _instance; } }
     public int Index { get { return x; } }
 
     void Start() {
@@ -24,7 +27,17 @@ public class presentationScreen : MonoBehaviour {
         rend.material.color = color;*/
         rend.sharedMaterial = material[x];
     }
-
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
     void Update() {
         rend.sharedMaterial = material[x];
     }

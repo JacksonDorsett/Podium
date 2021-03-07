@@ -8,10 +8,10 @@ namespace Assets.NetPeer.ServerCommand
 {
     class NextSlideCommand : IServerCommand
     {
-        private static presentationScreen screen = GameObject.FindObjectOfType(Type.GetType("presentationScreen")) as presentationScreen;
+        private static presentationScreen screen = presentationScreen.Instance;
         void Start()
         {
-            //if (screen == null) screen = GameObject.FindObjectOfType(Type.GetType("presentationScreen")) as presentationScreen;
+            if (screen == null) screen = GameObject.FindObjectOfType(Type.GetType("presentationScreen")) as presentationScreen;
         }
         public void Execute()
         {
