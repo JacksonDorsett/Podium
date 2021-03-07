@@ -4,6 +4,7 @@ using UnityEngine;
 using Assets;
 using UnityEngine.UI;
 using System.Net.Sockets;
+using UnityEngine.SceneManagement;
 
 public class JoinRoom : MonoBehaviour
 {
@@ -31,5 +32,6 @@ public class JoinRoom : MonoBehaviour
         GlobalControl.Instance.playerSocket = client.Client;
         Debug.Log(GlobalControl.Instance.playerSocket.ToString());
         GlobalControl.Instance.isHost = false;
+        SceneManager.LoadScene(1);
     }
 }
