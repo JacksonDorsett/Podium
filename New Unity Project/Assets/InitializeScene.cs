@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets;
+using Assets.NetPeer;
+using System.Net.Sockets;
+
 public class InitializeScene : MonoBehaviour
 {
     private GameObject server;
@@ -16,6 +19,7 @@ public class InitializeScene : MonoBehaviour
         if (GlobalControl.Instance.isHost)
         {
             InitializeHost();
+            InitializeNormal();
         }
         else
         {
@@ -30,7 +34,11 @@ public class InitializeScene : MonoBehaviour
 
     private void InitializeHost()
     {
-        GameObject.Instantiate(Resources.Load("Server") as GameObject);
+        var g = GameObject.Instantiate(Resources.Load("Server") as GameObject);
+        ServerManager s = g.GetComponent<ServerManager>();
+        TcpClient client = new TcpClient(s.str, 8083);
+        GlobalControl.Instance.playerSocket = client.Client;
+        Debug.Log(GlobalControl.Instance.playerSocket.ToString());
     }
     private void InitializeNormal()
     {

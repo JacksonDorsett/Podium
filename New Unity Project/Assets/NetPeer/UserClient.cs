@@ -12,13 +12,14 @@ public class UserClient : MonoBehaviour
     public UserClient()
     {
         this.clientSocket = Assets.GlobalControl.Instance.playerSocket;
-
+        handler = new ClientCommandHandler();
         Thread t = new Thread(new ThreadStart(() => Listen(clientSocket)));
+        t.Start();
     }
 
     private void Awake()
     {
-        handler = new ClientCommandHandler();
+        
     }
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class UserClient : MonoBehaviour
 
     void Listen(Socket client)
     {
+        Debug.Log("Entered Client Listen");
         while (true)
         {
             byte[] buf = new byte[client.ReceiveBufferSize];
