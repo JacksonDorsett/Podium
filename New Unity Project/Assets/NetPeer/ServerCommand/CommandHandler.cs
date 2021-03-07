@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Assets.NetPeer.ServerCommand
 {
-    public abstract class CommandHandler : MonoBehaviour
+    public abstract class CommandHandler
     {
         public abstract void Send(IServerCommand command);
         public abstract void Recieve(byte[] data);

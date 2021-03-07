@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using UnityEngine;
 namespace Assets.NetPeer.ServerCommand
 {
-    class NextSlideCommand : MonoBehaviour, IServerCommand
+    class NextSlideCommand : IServerCommand
     {
-        private static presentationScreen screen;
+        private static presentationScreen screen = GameObject.FindObjectOfType(Type.GetType("presentationScreen")) as presentationScreen;
         void Start()
         {
-            if (screen == null) screen = GameObject.FindObjectOfType(Type.GetType("presentationScreen")) as presentationScreen;
+            //if (screen == null) screen = GameObject.FindObjectOfType(Type.GetType("presentationScreen")) as presentationScreen;
         }
         public void Execute()
         {

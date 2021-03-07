@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Assets.NetPeer.ServerCommand
 {
-    class ClientCommandHandler : CommandHandler
+    public class ClientCommandHandler : CommandHandler
     {
         public override void Recieve(byte[] data)
         {

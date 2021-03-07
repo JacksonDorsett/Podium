@@ -1,3 +1,4 @@
+using Assets.NetPeer;
 using Assets.NetPeer.ServerCommand;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,15 +13,21 @@ public class processInput : MonoBehaviour
     public presentationScreen inputObject;
     void Start()
     {
-        
+        if (Assets.GlobalControl.Instance.isHost)
+        {
+            var s = GameObject.FindObjectOfType<ServerManager>() as ServerManager;
+            handler = s.cmdHandler;
+
+        }
     }
 
     private void Awake()
     {
-        if(Assets.GlobalControl.Instance.isHost)
-        {
-            handler = GameObject.FindObjectOfType<ServerCommandHandler>();
-        }
+        //if(Assets.GlobalControl.Instance.isHost)
+        //{
+        //    handler = (ServerCommandHandler)GameObject.Find;
+
+        //}
         
     }
 
@@ -29,15 +36,16 @@ public class processInput : MonoBehaviour
     {
         if (Assets.GlobalControl.Instance.isHost)
         {
-            if (Input.GetKeyDown(KeyCode.O))
+            if (Input.GetKeyDown(KeyCode.P))
             {
                 //presentationScreen scriptToAccess = presentationScreen.GetComponent<presentationScreen>();
                 //scriptToAccess.nextColor();
                 inputObject.NextColor();
-                handler.Send(new NextSlideCommand());
+                IServerCommand s = new NextSlideCommand();
+                handler.Send(s);
                 print("space key was pressed");
             }
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.O))
             {
                 //presentationScreen scriptToAccess = presentationScreen.GetComponent<presentationScreen>();
                 //scriptToAccess.nextColor();
