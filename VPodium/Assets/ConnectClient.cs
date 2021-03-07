@@ -23,7 +23,7 @@ public class ConnectClient : MonoBehaviour
         Debug.Log(arg0);
         TcpClient client = new TcpClient(arg0, ServerManager.port);
         Thread cThread = new Thread(new ThreadStart(() => ConnecttoClient(client.Client)));
-        
+        cThread.Start();
     }
     
     private void ConnecttoClient(Socket clientSocket)

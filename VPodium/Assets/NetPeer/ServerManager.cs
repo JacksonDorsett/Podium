@@ -73,6 +73,7 @@ namespace Assets.NetPeer
                 // rebroadcast
                 foreach (Socket clientSocket in connectedClients)
                 {
+                    if (clientSocket == client) continue;
                     clientSocket.Send(msg, 0, size, SocketFlags.None);
                 }
             }
