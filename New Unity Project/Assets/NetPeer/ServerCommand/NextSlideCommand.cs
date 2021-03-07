@@ -20,7 +20,7 @@ namespace Assets.NetPeer.ServerCommand
 
         public byte[] Serialize()
         {
-            return Encoding.UTF8.GetBytes("{cmd:\"next\"}");
+            return Encoding.UTF8.GetBytes("{\"cmd\":\"next\"}");
         }
     }
 }

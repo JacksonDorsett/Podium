@@ -31,6 +31,7 @@ namespace Assets.NetPeer.ServerCommand
         {
             foreach (Socket s in clients)
             {
+                
                 s.Send(command.Serialize(), 0, command.Serialize().Length, SocketFlags.None);
                 Debug.Log("Sent to client");
             }

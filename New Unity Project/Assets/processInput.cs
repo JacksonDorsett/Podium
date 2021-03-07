@@ -2,6 +2,7 @@ using Assets.NetPeer;
 using Assets.NetPeer.ServerCommand;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,8 +43,10 @@ public class processInput : MonoBehaviour
                 //scriptToAccess.nextColor();
                 inputObject.NextColor();
                 IServerCommand s = new NextSlideCommand();
+                string str = Encoding.UTF8.GetString(s.Serialize());
+                Debug.Log(str);
                 handler.Send(s);
-                print("space key was pressed");
+                print("P key was pressed");
             }
             if (Input.GetKeyDown(KeyCode.O))
             {

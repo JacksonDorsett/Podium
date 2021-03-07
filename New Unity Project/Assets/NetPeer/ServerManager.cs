@@ -85,6 +85,7 @@ namespace Assets.NetPeer
                 }
             }
 
+            Debug.Log("Lost Connection");
             connectedClientCount--;
         }
         private void Bind()
@@ -92,7 +93,7 @@ namespace Assets.NetPeer
             str = GetIPString();
             myIp = GetIP();
             connectedClientCount = 0;
-            serverListener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            serverListener = new Socket(AddressFamily.InterNetwork, SocketType.Seqpacket, ProtocolType.Tcp);
             
             ipEndPoint = new IPEndPoint(IPAddress, port);
             serverListener.Bind(ipEndPoint);

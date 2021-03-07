@@ -30,19 +30,23 @@ public class presentationScreen : MonoBehaviour {
     }
 
     public void NextColor() {
-        if(x > 0) {
-            x--;
-        } /*else {
+/*else {
             x = material.Length - 1;
         } */
-        
+        if (x < material.Length - 1)
+        {
+            x++;
+        }
+
     }
 
     public void PrevColor() {
-        if(x < material.Length - 1) {
-            x++;
-        } /*else {
-            x = 0;
-        }*/
+        /*else {
+           x = 0;
+       }*/
+        if (x > 0)
+        {
+            x--;
+        }
     }
 }
