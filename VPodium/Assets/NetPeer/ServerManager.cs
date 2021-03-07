@@ -10,15 +10,19 @@ namespace Assets.NetPeer
 {
     class ServerManager : MonoBehaviour
     {
+
         public string str;
-        public IPAddress myIp; 
-        private List<Socket> connectedClients;
+        public IPAddress myIp;
+        private Socket serverListener;
+            private int connectedClientCount;
+        private List<Socket> connectedClients; // could be made into its own class
         private Socket clientSocket;
         void Start()
         {
             connectedClients = new List<Socket>();
             clientSocket = default(Socket);
-            //myIp = GetIP();
+            connectedClientCount = 0;
+            serverListener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             str = GetIPString();
             myIp = GetIP();
 
@@ -27,6 +31,16 @@ namespace Assets.NetPeer
         private void Update()
         {
             
+        }
+
+        private void Listen()
+        {
+            while (true)
+            {
+                clientSocket = serverListener.Accept();
+                connectedClientCount++;
+                connectedClients.Add(clientSocket);
+            }
         }
 
         public IPAddress IPAddress
