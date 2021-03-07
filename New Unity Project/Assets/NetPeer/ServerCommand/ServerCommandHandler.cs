@@ -10,14 +10,14 @@ namespace Assets.NetPeer.ServerCommand
     {
         public override void Recieve(byte[] data)
         {
-            /*JObject commandJson = JObject.Parse(Encoding.UTF8.GetString(data));
+            JObject commandJson = JObject.Parse(Encoding.UTF8.GetString(data));
             switch (commandJson["cmd"].ToString())
             {
                 case "newConnection":
                     
                     break;
 
-            }*/
+            }
         }
 
         public override void Send(IServerCommand command)
