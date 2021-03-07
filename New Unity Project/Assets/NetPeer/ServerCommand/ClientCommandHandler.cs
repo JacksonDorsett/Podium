@@ -7,11 +7,17 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Assets.NetPeer.ServerCommand;
 using UnityEngine;
+using System.Net.Sockets;
 
 namespace Assets.NetPeer.ServerCommand
 {
     public class ClientCommandHandler : CommandHandler
     {
+        Socket socket;
+        public ClientCommandHandler(Socket connection)
+        {
+            socket = connection;
+        }
         public override void Recieve(byte[] data)
         {
              var jCmd = JObject.Parse(Encoding.UTF8.GetString(data));
@@ -30,7 +36,7 @@ namespace Assets.NetPeer.ServerCommand
 
         public override void Send(IServerCommand command)
         {
-            throw new NotImplementedException();
+            socket.Send(command.Serialize());
         }
     }
 }

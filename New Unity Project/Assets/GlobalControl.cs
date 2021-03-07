@@ -28,5 +28,9 @@ namespace Assets
         public Socket playerSocket;
         public bool isHost;
 
+        public MouseHandler MouseHandler;
+
+        public GameObject player;
+
     }
 }

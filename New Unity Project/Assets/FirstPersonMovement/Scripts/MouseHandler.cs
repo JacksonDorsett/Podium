@@ -2,6 +2,7 @@
 [RequireComponent(typeof(CharacterController))]
 public class MouseHandler : MonoBehaviour
 {
+
     // horizontal rotation speed
     // public float horizontalSpeed = 1f;
     // vertical rotation speed
@@ -31,6 +32,8 @@ public class MouseHandler : MonoBehaviour
         //lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        Assets.GlobalControl.Instance.MouseHandler = this;
+        Assets.GlobalControl.Instance.player = this.gameObject;
 
     }
 

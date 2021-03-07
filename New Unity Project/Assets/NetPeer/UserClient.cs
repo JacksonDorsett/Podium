@@ -9,10 +9,13 @@ public class UserClient : MonoBehaviour
 {
     private Socket clientSocket;
     private ClientCommandHandler handler;
+    int id;
     public UserClient()
     {
+        System.Random rand = new System.Random();
+        id = rand.Next();
         this.clientSocket = Assets.GlobalControl.Instance.playerSocket;
-        handler = new ClientCommandHandler();
+        handler = new ClientCommandHandler(clientSocket);
         Thread t = new Thread(new ThreadStart(() => Listen(clientSocket)));
         t.Start();
     }
@@ -30,7 +33,7 @@ public class UserClient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        handler.Send(new SendLocationCommand(id, Assets.GlobalControl.Instance.player.transform.position));
     }
 
     void Listen(Socket client)
