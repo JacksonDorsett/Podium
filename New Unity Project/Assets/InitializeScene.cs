@@ -19,7 +19,7 @@ public class InitializeScene : MonoBehaviour
         if (GlobalControl.Instance.isHost)
         {
             InitializeHost();
-            InitializeNormal();
+            //InitializeNormal();
         }
         else
         {
@@ -35,10 +35,10 @@ public class InitializeScene : MonoBehaviour
     private void InitializeHost()
     {
         var g = GameObject.Instantiate(Resources.Load("Server") as GameObject);
-        ServerManager s = g.GetComponent<ServerManager>();
+        /*ServerManager s = g.GetComponent<ServerManager>();
         TcpClient client = new TcpClient(s.str, 8083);
         GlobalControl.Instance.playerSocket = client.Client;
-        Debug.Log(GlobalControl.Instance.playerSocket.ToString());
+        Debug.Log(GlobalControl.Instance.playerSocket.ToString());*/
     }
     private void InitializeNormal()
     {

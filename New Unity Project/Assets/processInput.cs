@@ -53,6 +53,7 @@ public class processInput : MonoBehaviour
                 //presentationScreen scriptToAccess = presentationScreen.GetComponent<presentationScreen>();
                 //scriptToAccess.nextColor();
                 inputObject.PrevColor();
+                handler.Send(new PrevSlideCommand());
                 print("space key was pressed");
             }
         }

@@ -22,6 +22,9 @@ namespace Assets.NetPeer.ServerCommand
                     new NextSlideCommand().Execute();
                     Debug.Log("next slide executed");
                     break;
+                case "back":
+                    new PrevSlideCommand().Execute();
+                    break;
             }
         }
 
