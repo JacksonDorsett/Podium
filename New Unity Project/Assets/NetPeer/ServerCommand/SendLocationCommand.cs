@@ -26,6 +26,7 @@ namespace Assets.NetPeer.ServerCommand
         public byte[] Serialize()
         {
             FormattableString msg = $"{{\"cmd\":\"move\",\"ID\":{0},\"x\":{1},\"y\":{2},\"z\":{3}}}";
+            Debug.Log(msg.ToString());
             //var s = string.Format("{\"cmd\":\"move\",\"ID\":{0},\"x\":{1},\"y\":{2},\"z\":{3}", id, Position.x, Position.y, Position.z);
             return Encoding.UTF8.GetBytes(msg.ToString());
         }

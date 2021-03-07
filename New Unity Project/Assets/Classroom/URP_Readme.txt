@@ -1,0 +1,1 @@
+For URP project, please delete all files in the 'Classroom' folder except 'URP.unitypackage', and then extract all contents in 'URP.unitypackage'.
