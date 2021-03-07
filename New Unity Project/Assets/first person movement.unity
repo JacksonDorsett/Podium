@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -792,7 +792,6 @@ GameObject:
   - component: {fileID: 1760701369}
   - component: {fileID: 1760701372}
   - component: {fileID: 1760701371}
-  - component: {fileID: 1760701374}
   - component: {fileID: 1760701373}
   m_Layer: 0
   m_Name: Player
@@ -883,26 +882,6 @@ MonoBehaviour:
   jumpSpeed: 8
   gravity: 20
   cam: {fileID: 712381549}
-  lookSpeed: 2
-  lookXlimit: 45
-  canMove: 1
---- !u!114 &1760701374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1760701368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3337cd7d3109875498554b997f8c1a7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkingSpeed: 5.5
-  runningSpeed: 8.5
-  jumpSpeed: 8
-  gravity: 20
-  cam: {fileID: 0}
   lookSpeed: 2
   lookXlimit: 45
   canMove: 1
