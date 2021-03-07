@@ -12,21 +12,23 @@ namespace Assets.NetPeer
 {
     class ServerManager : MonoBehaviour
     {
-        private int port = 8083;
+        public static int port = 8083;
         private IPEndPoint ipEndPoint;
         public string str;
         public IPAddress myIp;
         private Socket serverListener;
-            private int connectedClientCount;
-        private List<Socket> connectedClients; // could be made into its own class
+        private int connectedClientCount;
+        public List<Socket> connectedClients; // could be made into its own class
         private Socket clientSocket;
         void Start()
         {
             connectedClients = new List<Socket>();
             clientSocket = default(Socket);
             Bind();
+            Debug.Log("Done Binding");
             Thread clientThread = new Thread(new ThreadStart(() =>
            this.Listen()));
+            clientThread.Start();
 
         }
 
@@ -37,6 +39,7 @@ namespace Assets.NetPeer
 
         private void Listen()
         {
+            serverListener.Listen(0);
             Debug.Log("Starting Server");
             while (true)
             {
@@ -46,6 +49,7 @@ namespace Assets.NetPeer
 
                 Thread clientThread = new Thread(new ThreadStart( () =>
                     this.ListenUser(clientSocket)));
+                clientThread.Start();
             }
         }
 
@@ -58,7 +62,7 @@ namespace Assets.NetPeer
         }
         private void ListenUser(Socket client)
         {
-            Debug.Log($"Client connected with ip: {client.RemoteEndPoint.ToString()}")
+            Debug.Log($"Client connected with ip: {client.RemoteEndPoint.ToString()}");
             while (client.Connected)
             {
                 byte[] msg = new byte[1024];
@@ -69,7 +73,7 @@ namespace Assets.NetPeer
                 // rebroadcast
                 foreach (Socket clientSocket in connectedClients)
                 {
-                    client.Send(msg, 0, size, SocketFlags.None);
+                    clientSocket.Send(msg, 0, size, SocketFlags.None);
                 }
             }
 
@@ -81,7 +85,9 @@ namespace Assets.NetPeer
             myIp = GetIP();
             connectedClientCount = 0;
             serverListener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            
             ipEndPoint = new IPEndPoint(IPAddress, port);
+            serverListener.Bind(ipEndPoint);
         }
         private string GetIPString()
         {
