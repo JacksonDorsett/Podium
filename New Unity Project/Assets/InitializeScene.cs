@@ -17,6 +17,10 @@ public class InitializeScene : MonoBehaviour
         {
             InitializeHost();
         }
+        else
+        {
+            InitializeNormal();
+        }
     }
     // Update is called once per frame
     void Update()
@@ -27,5 +31,9 @@ public class InitializeScene : MonoBehaviour
     private void InitializeHost()
     {
         GameObject.Instantiate(Resources.Load("Server") as GameObject);
+    }
+    private void InitializeNormal()
+    {
+        GameObject.Instantiate(Resources.Load("Client") as GameObject);
     }
 }

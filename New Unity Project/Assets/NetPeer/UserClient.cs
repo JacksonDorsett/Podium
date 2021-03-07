@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading;
 using UnityEngine;
+using Assets.NetPeer.ServerCommand;
 
 public class UserClient : MonoBehaviour
 {
     private Socket clientSocket;
-    public UserClient(Socket clientSocket)
+    private ClientCommandHandler handler;
+    public UserClient()
     {
-        this.clientSocket = clientSocket;
+        this.clientSocket = Assets.GlobalControl.Instance.playerSocket;
 
         Thread t = new Thread(new ThreadStart(() => Listen(clientSocket)));
+    }
+
+    private void Awake()
+    {
+        handler = new ClientCommandHandler();
     }
     // Start is called before the first frame update
     void Start()
@@ -33,7 +40,7 @@ public class UserClient : MonoBehaviour
 
             client.Receive(buf);
 
-
+            handler.Recieve(buf);
 
         }
     }
