@@ -26,12 +26,13 @@ namespace Assets.NetPeer
 
         public void UpdatePos(int id, Vector3 postition)
         {
+            /*
             if (!registeredUsers.ContainsKey(id))
             {
                 registeredUsers.Add(id, new OtherPlayer(id));
             }
 
-            registeredUsers[id].position = postition;
+            registeredUsers[id].position = postition;*/
         }
 
         private void Awake()

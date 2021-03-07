@@ -33,7 +33,7 @@ public class UserClient : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        handler.Send(new SendLocationCommand(id, Assets.GlobalControl.Instance.player.transform.position));
+        //handler.Send(new SendLocationCommand(id, Assets.GlobalControl.Instance.player.transform.position));
     }
 
     void Listen(Socket client)

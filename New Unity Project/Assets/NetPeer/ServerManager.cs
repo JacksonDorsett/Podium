@@ -75,8 +75,12 @@ namespace Assets.NetPeer
             {
                 byte[] msg = new byte[1024];
                 Debug.Log("Waiting to hear from user");
-                int size = client.Receive(msg);
-                Parse(Encoding.UTF8.GetString(msg, 0, size));
+                lock (client)
+                {
+                    int size = client.Receive(msg);
+                    //Parse(Encoding.UTF8.GetString(msg, 0, size));
+                }
+                
 
                 
             }
