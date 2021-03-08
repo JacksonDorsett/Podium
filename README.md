@@ -1,6 +1,6 @@
 # Podium, practice presenting together
 
-> Created by Cooper Lappenbusch, Jackson Dorsett, 
+> Created by Cooper Lappenbusch, Jackson Dorsett, Freeman Chen
 
 <img src="https://cdn.discordapp.com/attachments/308138442926194690/818012204157763584/PODIUM.png" alt="drawing" width="150"/>
 
